@@ -15,7 +15,11 @@ class SiteScraper
     while @page_list.length > 0
       resource = @page_list.shift
 
-      page = self.fetch_page(resource)
+      begin
+        page = self.fetch_page(resource)
+      rescue
+        puts "Response not 200 on #{resource}"
+      end
 
       if page.contains? string
         return resource
@@ -25,6 +29,7 @@ class SiteScraper
     end
 
     raise StringNotFound
+
   end
 
 
