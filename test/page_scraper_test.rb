@@ -6,7 +6,7 @@ class PageScraperTest < MiniTest::Test
   end
 
   def test_that_good_page_get_succeeds
-    refute_nil @good_page
+    assert @good_page
   end
 
   def test_that_bad_page_fails
@@ -14,7 +14,16 @@ class PageScraperTest < MiniTest::Test
   end
 
   def test_that_contains_method_succeeds
-    refute_nil @good_page.contains? /Simple Energy/
+    assert @good_page.contains? /Simple Energy/
+    refute @good_page.contains? /I am a rabid hippopotamus/
+  end
+
+  def test_that_body_getter_works
+    assert @good_page.body
+  end
+
+  def test_that_references_scrape
+    refute_empty @good_page.references
   end
 
 

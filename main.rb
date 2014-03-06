@@ -5,6 +5,8 @@ def run!
 
   scraper = SiteScraper.new("http://simpleenergy.com")
 
+  puts "Searching SimpleEnergy.com for #{target}"
+
   location = scraper.seek_string(target)
 
   puts "String found on #{location}"

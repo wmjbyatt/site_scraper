@@ -17,10 +17,6 @@ class PageScraper
     @response
   end
 
-  def error
-    @error
-  end
-
   def references
     @references = self.tags.map do |tag|
       (match = tag.match(RESOURCE_REGEX)) ? match[2] : nil
@@ -41,9 +37,9 @@ class PageScraper
     if response.is_a? Net::HTTPSuccess
       return response.body
     else
-      @error = response
       raise BadPageError
     end
+
   end
 
   def tags
